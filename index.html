@@ -31,7 +31,9 @@
     <body>
         <div class="center">
             <div class="title">🌊나이스(NEIS) 글자수 계산기</div>
+            <div class="title_underbar_wrapper">
             <div class="title_underbar"></div>
+            </div>
             <textarea oninput="counter(document.getElementById('counter').value)" id="counter" class="counter" cols="40" rows="5"></textarea>
             <table>
                     <tr>
@@ -56,7 +58,7 @@
                     </tr>
             </table>
             <div id="result" class="result">공백 제외 0자, 공백 포함 0자, 0바이트</div>
-            <span style="font-size: 12pt; color:#aaa; font-family: 'Noto Sans KR'; letter-spacing: -1.25px; float: right; text-align: right;">영어, 숫자, 특수문자, 띄어쓰기 1바이트 / 엔터키 2바이트 / 한글 3바이트<br>해당 사이트 제작자가 20년도 졸업생인데, 생활기록부 입력 제한이 바뀐 것으로 알고 있어 지웠습니다.<br>PR 로 내용을 보내주시면 반영하겠습니다!<br>반영해주신 분들: <a href="https://github.com/Dongyeongkim" target="_blank">김동영</a>, <a href="https://github.com/rycont" target="_blank">정한(RyCont)</a>, <a href="https://github.com/cokia" target="_blank">한우영</a></span>
+            <span style="font-size: 12pt; color:#aaa; font-family: 'Noto Sans KR'; letter-spacing: -1.25px; float: right; text-align: right;">영어, 숫자, 특수문자, 띄어쓰기 1바이트 / 엔터키 2바이트 / 한글 3바이트<br>해당 사이트 제작자가 20년도 졸업생인데, 생활기록부 입력 제한이 바뀐 것으로 알고 있어 지웠습니다.<br>PR 로 내용을 보내주시면 반영하겠습니다!<br>반영해주신 분들: <a href="https://github.com/Dongyeongkim" target="_blank">김동영</a>, <a href="https://github.com/rycont" target="_blank">정한(RyCont)</a>, <a href="https://github.com/cokia" target="_blank">한우영</a>, <a href="https://github.com/hajin-chung" target="_blank">정하진</a></span>
         </div>
         <div class="footbar">
         <div class="footbar_content">
@@ -65,8 +67,17 @@
         </div>
         </div>
         <script>
+        function init() {
+            let content = localStorage.getItem("save");
+            if(content) {
+                counter(content);
+                document.getElementById('counter').value = content;
+            }
+        }
+
         function counter(content) {
             console.log(content);
+            localStorage.setItem("save", content);
             var english = content.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");;
             var korean = content.replace(/[a-zA-Z]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");
             var number = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");
@@ -76,6 +87,8 @@
             var result = english.length + (korean.length * 3) +  number.length + special.length + space.length + (line.length * 2);
             document.getElementById('result').innerHTML = "공백 제외 " + content.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/ /gi, "").length + "자, 공백 포함 " + content.length + "자, " + result + "바이트";
         }    
+
+        window.onload = init;
         </script>
     </body>
 </html>
