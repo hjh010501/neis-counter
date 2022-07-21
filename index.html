@@ -1,90 +1,289 @@
 <html lang="ko">
-    <head>
+
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <meta name="description" content="나이스(NEIS) 글자수 계산기">
-    <meta property="og:title" content="나이스(NEIS) 글자수 계산기">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hjh010501.github.io/neis-counter">
-    <meta property="og:locale" content="ko_KR">
-    <meta property="og:description" content="나이스(NEIS) 글자수 계산기">
-    <meta property="og:image" content="ogimage.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <title>나이스(NEIS) 글자수 계산기</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145929593-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-145929593-1');
-    </script>
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+        <meta name="description" content="나이스(NEIS) 글자수 계산기">
+        <meta property="og:title" content="나이스(NEIS) 글자수 계산기">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://hjh010501.github.io/neis-counter">
+        <meta property="og:locale" content="ko_KR">
+        <meta property="og:description" content="나이스(NEIS) 글자수 계산기">
+        <meta property="og:image" content="ogimage.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <title>나이스(NEIS) 글자수 계산기</title>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145929593-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-145929593-1');
+        </script>
 
     </head>
-    <body>
-        <div class="center">
+
+<body>
+    <div class="center">
+        <header>
             <div class="title">🌊나이스(NEIS) 글자수 계산기</div>
-            <div class="title_underbar_wrapper">
+            <button class="primary" id="go_spellcheck">
+                맞춤법 검사하기
+            </button>
+        </header>
+        <div class="title_underbar_wrapper">
             <div class="title_underbar"></div>
-            </div>
-            <textarea oninput="counter(document.getElementById('counter').value)" id="counter" class="counter" cols="40" rows="5"></textarea>
-            <table>
-                    <tr>
-                        <th>항목</td>
-                        <th>자율활동</th>
-                        <th>동아리활동</th>
-                        <th>진로활동</th>
-                        <th>교과세특</th>
-                        <th>개인별세특</th>
-                    </tr>
-                    <tr>
-                        <td>바이트</td>
-                        <td>1500Bytes</td>
-                        <td>1500Bytes</td>
-                        <td>2100Bytes</td>
-                        <td>1500Bytes</td>
-                        <td>1500Bytes</td>
-                    </tr>
-            </table>
-            <div id="result" class="result">공백 제외 0자, 공백 포함 0자, 0바이트</div>
-            <span style="font-size: 12pt; color:#aaa; font-family: 'Noto Sans KR'; letter-spacing: -1.25px; float: right; text-align: right;">영어, 숫자, 특수문자, 띄어쓰기 1바이트 / 엔터키 2바이트 / 한글 3바이트<br>해당 사이트 제작자가 20년도 졸업생인데, 생활기록부 입력 제한이 바뀐 것으로 알고 있어 지웠습니다.<br>PR 로 내용을 보내주시면 반영하겠습니다!<br>반영해주신 분들: <a href="https://github.com/Dongyeongkim" target="_blank">김동영</a>, <a href="https://github.com/rycont" target="_blank">정한(RyCont)</a>, <a href="https://github.com/cokia" target="_blank">한우영</a>, <a href="https://github.com/hajin-chung" target="_blank">정하진</a>, <a href="https://github.com/mcgun1234" target="_blank">최수현</a></span>
         </div>
-        <div class="footbar">
+        <div contenteditable oninput="counter(document.getElementById('counter').innerText)" id="counter"
+            class="counter" cols="40" rows="5"></div>
+        <table>
+            <tr>
+                <th>항목</td>
+                <th>자율활동</th>
+                <th>동아리활동</th>
+                <th>진로활동</th>
+                <th>교과세특</th>
+                <th>개인별세특</th>
+            </tr>
+            <tr>
+                <td>바이트</td>
+                <td>1500Bytes</td>
+                <td>1500Bytes</td>
+                <td>2100Bytes</td>
+                <td>1500Bytes</td>
+                <td>1500Bytes</td>
+            </tr>
+        </table>
+        <div id="result" class="result">공백 제외 0자, 공백 포함 0자, 0바이트</div>
+        <span
+            style="font-size: 12pt; color:#aaa; font-family: 'Noto Sans KR'; letter-spacing: -1.25px; float: right; text-align: right;">영어,
+            숫자, 특수문자, 띄어쓰기 1바이트 / 엔터키 2바이트 / 한글 3바이트<br>해당 사이트 제작자가 20년도 졸업생인데, 생활기록부 입력 제한이 바뀐 것으로 알고 있어 지웠습니다.<br>PR 로
+            내용을 보내주시면 반영하겠습니다!<br>맞춤법 검사 창에 표시되는 대체단어를 숫자 키로 빠르게 선택할 수 있습니다<br>반영해주신 분들: <a href="https://github.com/Dongyeongkim" target="_blank">김동영</a>, <a
+                href="https://github.com/rycont" target="_blank">정한(RyCont)</a>, <a href="https://github.com/cokia"
+                target="_blank">한우영</a>, <a href="https://github.com/hajin-chung" target="_blank">정하진</a>, <a
+                href="https://github.com/mcgun1234" target="_blank">최수현</a></span>
+                
+    </div>
+    <div class="footbar">
         <div class="footbar_content">
             <span style="text-align: left;">👨‍💻 by <a href="https://kidevelop.io">kidevelop</a></span>
-            <span style="float: right;"><a class="github-button" href="https://github.com/hjh010501/neis-counter" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star hjh010501/neis-counter on GitHub">Star</a></span>
+            <span style="float: right;"><a class="github-button" href="https://github.com/hjh010501/neis-counter"
+                    data-icon="octicon-star" data-size="large" data-show-count="true"
+                    aria-label="Star hjh010501/neis-counter on GitHub">Star</a></span>
         </div>
+    </div>
+    <div id="dialog">
+        <div class="dialog_control">
+            <p id="progress">
+                1 / 3
+            </p>
+            <p class="arrow">
+                <span id="go_prev">
+                    &lt;
+                </span>
+                &nbsp;
+                <span id="go_next">
+                    &gt;
+                </span>
+            </p>
         </div>
-        <script>
-        function init() {
-            let content = localStorage.getItem("save");
-            if(content) {
-                counter(content);
-                document.getElementById('counter').value = content;
+        <div id="candidates">
+        </div>
+    </div>
+    <script>const textarea = document.getElementById('counter')
+        const spellcheck = document.getElementById("dialog")
+        const candidates = document.getElementById("candidates")
+        const progress = document.getElementById("progress")
+        const message = document.getElementById("message")
+        const goNext = document.getElementById("go_next")
+        const goPrev = document.getElementById("go_prev")
+
+        let typos = []
+        let offset = 0
+        let currentIndex = 0
+
+        document.getElementById("go_spellcheck")?.addEventListener("click", () => {
+            fetch("https://spell.rycont.workers.dev/" + encodeURIComponent(textarea.innerText))
+                .then(e => e.json())
+                .then(async spellCheckErrors => {
+                    if (spellCheckErrors.length === 0) {
+                        alert("맞춤법 오류를 찾지 못했습니다")
+                    } else {
+                        typos = spellCheckErrors
+                        offset = 0
+                        showSpellCheck(0)
+                    }
+                })
+        })
+
+        function setCaratTo(contentEditableElement, start, end) {
+            const range = document.createRange();
+            range.selectNodeContents(contentEditableElement);
+
+            range.setStart(contentEditableElement.firstChild, start);
+            range.setEnd(contentEditableElement.firstChild, end)
+
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            return range
+        }
+
+        function showSpellCheck(index) {
+            if(index >= typos.length) {
+                alert("맞춤법 검사를 완료했습니다")
+                typos = []
+                offset = 0
+                currentIndex = 0
+
+                spellcheck.style.setProperty("display", "none")
+
+                return
+            }
+
+            currentIndex = index
+            const typo = typos[index]
+
+            const from = typo.from + offset
+            const to = typo.to + offset
+
+            const range = setCaratTo(
+                textarea,
+                from,
+                to
+            )
+
+            const rect = range.getBoundingClientRect()
+
+            spellcheck.style.setProperty(
+                "top",
+                rect.top + 30
+            )
+
+            spellcheck.style.setProperty(
+                "left",
+                rect.left
+            )
+
+            spellcheck.style.setProperty(
+                "display",
+                "flex"
+            )
+
+            candidates.replaceChildren()
+            progress.replaceChildren(
+                document.createTextNode(
+                    `${index + 1} / ${typos.length}`
+                )
+            )
+
+            for (const suggestion of typo.suggestions) {
+                const button = document.createElement("button")
+
+                button.appendChild(
+                    document.createTextNode(suggestion)
+                )
+
+                button.addEventListener("click", (e) => {
+                    e.stopPropagation()
+                    textarea.innerText = textarea.innerText.substring(0, from) + suggestion + textarea.innerText.substring(to)
+
+                    if (index === typos.length - 1) {
+                        spellcheck.style.setProperty(
+                            "display",
+                            "none"
+                        )
+                        return
+                    }
+
+                    offset += suggestion.length - typo.token.length
+
+                    showSpellCheck(
+                        index + 1
+                    )
+                })
+                candidates.appendChild(button)
             }
         }
 
+        function init() {
+            let content = localStorage.getItem("save");
+            if (content) {
+                counter(content);
+                textarea.replaceChildren(document.createTextNode(content))
+            }
+
+            textarea.addEventListener("paste", function (e) {
+                e.preventDefault();
+                var text = (e.originalEvent || e).clipboardData.getData('text/plain');
+                document.execCommand("insertHTML", false, text);
+            });
+
+            document.addEventListener("click", () => spellcheck.style.setProperty("display", "none"))
+
+            document.body.addEventListener("keypress", (e) => {
+                const selectedIndex = +e.key
+
+                if (e.key === selectedIndex.toString()) {
+                    e.preventDefault()
+                    e.stopPropagation()
+
+                    if (selectedIndex === 0) {
+                        showSpellCheck(
+                            currentIndex + 1
+                        )
+                        return
+                    }
+
+                    const typo = typos[currentIndex]
+                    
+                    const from = typo.from + offset
+                    const to = typo.to + offset
+
+                    textarea.innerText = textarea.innerText.substring(0, from) + typo.suggestions[selectedIndex - 1] + textarea.innerText.substring(to)
+
+                    offset += typo.suggestions[selectedIndex - 1].length - typo.token.length
+
+                    showSpellCheck(
+                        currentIndex + 1
+                    )
+                }
+            })
+
+            goNext.addEventListener("click", (e) => {
+                e.stopPropagation()
+                showSpellCheck(currentIndex + 1)
+            })
+            goPrev.addEventListener("click", (e) => {
+                e.stopPropagation()
+                showSpellCheck(currentIndex - 1)
+            })
+        }
+
         function counter(content) {
-            console.log(content);
+            console.log(content)
             localStorage.setItem("save", content);
-            var english = content.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");;
-            var korean = content.replace(/[a-zA-Z]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");
-            var number = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");
-            var special = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");
-            var space =  content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/[0-9]/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");
+            var english = content.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm, "");;
+            var korean = content.replace(/[a-zA-Z]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm, "");
+            var number = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm, "");
+            var special = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm, "");
+            var space = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/[0-9]/gi, "").replace(/(\r\n\t|\n|\r\t)/gm, "");
             var line = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/[0-9]/gi, "").replace(/ /gi, "");
-            var result = english.length + (korean.length * 3) +  number.length + special.length + space.length + (line.length * 2);
-            document.getElementById('result').innerHTML = "공백 제외 " + content.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/ /gi, "").length + "자, 공백 포함 " + content.length + "자, " + result + "바이트";
-        }    
+            var result = english.length + (korean.length * 3) + number.length + special.length + space.length + (line.length * 2);
+            document.getElementById('result').innerHTML = "공백 제외 " + content.replace(/(\r\n\t|\n|\r\t)/gm, "").replace(/ /gi, "").length + "자, 공백 포함 " + content.length + "자, " + result + "바이트";
+        }
 
         window.onload = init;
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>
