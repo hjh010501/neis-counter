@@ -158,6 +158,7 @@ button {
     border: 1px solid rgba(0, 0, 0, 0.2); 
     padding: 4px 12px;
     border-radius: 20px;
+    font-family: 'Noto Sans KR';
 }
 
 button.primary {
@@ -176,4 +177,8 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+#go_spellcheck {
+    position: relative;
 }

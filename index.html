@@ -110,7 +110,8 @@
         let offset = 0
         let currentIndex = 0
 
-        document.getElementById("go_spellcheck")?.addEventListener("click", () => {
+        document.getElementById("go_spellcheck")?.addEventListener("click", (e) => {
+            e.target.style.setProperty("opacity", "0.5")
             fetch("https://spell.rycont.workers.dev/" + encodeURIComponent(textarea.innerText))
                 .then(e => e.json())
                 .then(async spellCheckErrors => {
@@ -121,6 +122,8 @@
                         offset = 0
                         showSpellCheck(0)
                     }
+                }).finally(() => {
+                    e.target.style.setProperty("opacity", "1")
                 })
         })
 
