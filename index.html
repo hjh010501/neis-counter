@@ -89,7 +89,6 @@
         }
 
         function counter(content) {
-            console.log(content);
             localStorage.setItem("save", content);
             var english = content.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");;
             var korean = content.replace(/[a-zA-Z]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");

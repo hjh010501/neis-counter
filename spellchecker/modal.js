@@ -59,10 +59,7 @@ class TypoModal extends LitElement {
       e.stopPropagation();
       const selected = isNaN(+e.key) ? e.key : +e.key;
 
-      console.log(selected instanceof Number);
-
       if (this.typo.suggestions[selected - 1]) {
-        console.log(this.typo.suggestions[selected - 1]);
         this.dispatchEvent(
           new CustomEvent("replace", {
             detail: {

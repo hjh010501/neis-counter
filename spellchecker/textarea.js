@@ -170,7 +170,6 @@ class SpellCheckInput extends LitElement {
         modal.open();
 
         modal.addEventListener("agree", () => {
-          console.log("네?");
           this.agreed = true;
           localStorage.setItem("agreed", true);
           this.spellCheck().then(ok).catch(error);
