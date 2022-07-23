@@ -1,184 +1,147 @@
 @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 @font-face {
-    font-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),
-    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),
-    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2)
+      format("woff2"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff)
+      format("woff"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf)
+      format("opentype");
 }
 
 @font-face {
-    font-family: 'Noto Sans KR Bold';
-    font-style: normal;
-    font-weight: 600;
-    src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),
-    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),
-    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');
+  font-family: "Noto Sans KR Bold";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2)
+      format("woff2"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff)
+      format("woff"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf)
+      format("opentype");
 }
 
 a {
-    text-decoration: none;
-    font-family: 'Noto Sans KR Bold';
-    color: #1d1a1a;
-    letter-spacing: -1px;
+  text-decoration: none;
+  font-family: "Noto Sans KR Bold";
+  color: #1d1a1a;
+  letter-spacing: -1px;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    font-family: 'Noto Sans KR';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR";
 }
 
 .center {
-    width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .center > span {
-    width: 100%;
+  width: 100%;
 }
 
 .center > div {
-    width: 100%;
-}
-
-.title {
-    font-family: 'Noto Sans KR Bold';
-    font-size: 20pt;
-    letter-spacing: -1.25px;
-    color: #1d1a1a;
-}
-
-.title_underbar {
-    width: 30px;
-    height: 4px;
-    background: #1d1d1d;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-.counter {
-    font-family: 'Noto Sans KR';
-    font-size: 11pt;
-    border: 0;
-    resize: none;
-    border: 1px solid #ddd;
-    width: 800px;
-    height: 400px;
-    outline: 0;
-    padding: 25px;
-    line-height: 25px;
-    box-sizing: border-box;
-}
-
-.result {
-    font-family: 'Noto Sans KR Bold';
-    font-size: 20pt;
-    letter-spacing: -1.25px;
-    color: #1d1a1a;
-    text-align: right;
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    text-align: center;
-    font-family: 'Noto Sans KR';
-    letter-spacing: -1.25px;
-    border: 1px solid #fff;
-    font-size: 14pt;
-    margin-top: 20px;
-}
-
-th {
-    background: #1d1d1d;
-    font-weight: 400;
-    color: #fff;
-    padding: 10px;
-}
-td {
-    background-color: #ededed;
-    color: #1d1d1d;
-    padding: 10px;
-}
-
-.footbar {
-  margin-top: 60px ;
-}
-
-.footbar_content {
-    width: 800px;
-    margin: 0 auto;
-}
-
-/* dialog:not([open]) {
-    display: none;
-} */
-
-#dialog {
-    border-radius: 4px;
-    position: fixed;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-    background-color: white;
-    gap: 12px;
-    padding: 16px;
-    display: none;
-    flex-direction: column;
-    margin: 0px;
-}
-
-#dialog p {
-    margin: 0px;
-    max-width: 160px;
-    word-break: keep-all;
-    font-size: 14px;
-}
-
-.dialog_control {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#candidates {
-    display: flex;
-    gap: 8px;
-}
-
-button {
-    border: 1px solid rgba(0, 0, 0, 0.2); 
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-family: 'Noto Sans KR';
-}
-
-button.primary {
-    background-color: #1d1d1d;
-    color: #fff;
-}
-
-#progress {
-    font-weight: 700;
-    opacity: 0.5;
+  width: 100%;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#go_spellcheck {
-    position: relative;
+.title {
+  font-family: "Noto Sans KR Bold";
+  font-size: 20pt;
+  letter-spacing: -1.25px;
+  color: #1d1a1a;
+}
+
+.title_underbar {
+  width: 30px;
+  height: 4px;
+  background: #1d1d1d;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.counter {
+  font-family: "Noto Sans KR";
+  font-size: 11pt;
+  border: 0;
+  resize: none;
+  border: 1px solid #ddd;
+  width: 800px;
+  height: 400px;
+  outline: 0;
+  padding: 25px;
+  line-height: 25px;
+  box-sizing: border-box;
+}
+
+.result {
+  font-family: "Noto Sans KR Bold";
+  font-size: 20pt;
+  letter-spacing: -1.25px;
+  color: #1d1a1a;
+  text-align: right;
+  margin-top: 20px;
+}
+
+button {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: "Noto Sans KR";
+  background-color: #1d1d1d;
+  color: #fff;
+}
+
+button.pending {
+  opacity: 0.5;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  font-family: "Noto Sans KR";
+  letter-spacing: -1.25px;
+  border: 1px solid #fff;
+  font-size: 14pt;
+  margin-top: 20px;
+}
+
+th {
+  background: #1d1d1d;
+  font-weight: 400;
+  color: #fff;
+  padding: 10px;
+}
+td {
+  background-color: #ededed;
+  color: #1d1d1d;
+  padding: 10px;
+}
+
+.footbar {
+  margin-top: 45px;
+}
+
+.footbar_content {
+  width: 800px;
+  margin: 0 auto;
 }
