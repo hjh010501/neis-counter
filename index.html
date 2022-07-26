@@ -30,11 +30,14 @@
     </head>
     <body>
         <div class="center">
-            <div class="title">🌊나이스(NEIS) 글자수 계산기</div>
+            <header>
+              <div class="title">🌊나이스(NEIS) 글자수 계산기</div>
+              <button id="spellcheck_button">맞춤법 검사하기</button>
+            </header>
             <div class="title_underbar_wrapper">
             <div class="title_underbar"></div>
             </div>
-            <textarea oninput="counter(document.getElementById('counter').value)" id="counter" class="counter" cols="40" rows="5"></textarea>
+            <spell-check-input id="counter" class="counter"></spell-check-input>
             <table>
                     <tr>
                         <th>항목</td>
@@ -62,17 +65,30 @@
             <span style="float: right;"><a class="github-button" href="https://github.com/hjh010501/neis-counter" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star hjh010501/neis-counter on GitHub">Star</a></span>
         </div>
         </div>
+        <script type="module" src="./spellchecker/index.js"></script>
         <script>
+        const textarea = document.getElementById("counter");
+        const spellCheckButton = document.getElementById("spellcheck_button")
+        
         function init() {
             let content = localStorage.getItem("save");
+
             if(content) {
                 counter(content);
-                document.getElementById('counter').value = content;
+                textarea.setContent(content);
             }
+
+            textarea.addEventListener("content-change", function(e) {
+                counter(e.detail.content);
+            });
+
+            spellCheckButton.addEventListener("click", function() {
+                spellCheckButton.classList.add("pending")
+                textarea.spellCheck().finally(() => spellCheckButton.classList.remove("pending"));
+            });
         }
 
         function counter(content) {
-            console.log(content);
             localStorage.setItem("save", content);
             var english = content.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");;
             var korean = content.replace(/[a-zA-Z]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");

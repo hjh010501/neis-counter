@@ -56,6 +56,14 @@ body {
   width: 100%;
 }
 
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title {
   font-family: "Noto Sans KR Bold";
   font-size: 20pt;
@@ -82,6 +90,7 @@ body {
   outline: 0;
   padding: 25px;
   line-height: 25px;
+  box-sizing: border-box;
 }
 
 .result {
@@ -91,6 +100,19 @@ body {
   color: #1d1a1a;
   text-align: right;
   margin-top: 20px;
+}
+
+button {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: "Noto Sans KR";
+  background-color: #1d1d1d;
+  color: #fff;
+}
+
+button.pending {
+  opacity: 0.5;
 }
 
 table {
