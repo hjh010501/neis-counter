@@ -55,6 +55,7 @@ class SpellCheckInput extends LitElement {
   render() {
     return html`
       <div
+        style="overflow-y: auto; padding: 25px; width: calc(100% - 50px); height: calc(100% - 50px)"
         contenteditable
         @input=${(e) => {
           this.content = e.target.innerText;
