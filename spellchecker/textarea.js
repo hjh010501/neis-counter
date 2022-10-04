@@ -77,6 +77,7 @@ class SpellCheckInput extends LitElement {
               @replace=${(e) => {
                 const typo = this.typos[this.typoIndex];
                 const suggestion = e.detail.suggestion;
+                const originLength = this.content.length;
 
                 this.setContent(
                   this.content.substring(0, typo.from + this.offset) +
@@ -84,8 +85,7 @@ class SpellCheckInput extends LitElement {
                     this.content.substring(typo.to + this.offset)
                 );
 
-                this.offset += suggestion.length - typo.token.length;
-
+                this.offset += this.content.length - originLength;
                 this.goIndex();
               }}
               @close=${() => this.closeModal()}
