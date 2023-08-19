@@ -99,7 +99,21 @@ header {
   letter-spacing: -1.25px;
   color: #1d1a1a;
   text-align: right;
-  margin-top: 20px;
+
+.info {
+  font-size: 12pt;
+  color: #aaa;
+  font-family: 'Noto Sans KR';
+  letter-spacing: -1.25px;
+  float: right;
+  text-align: right;
+}
+
+.footbar_content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.6rem;
 }
 
 button {
