@@ -18,6 +18,17 @@ class Agreement extends LitElement {
       h1 {
         font-size: 16px;
       }
+      @media (max-width:768px) {
+        dialog{
+          width: 400px;
+        }
+      }
+      @media (max-width:480px) {
+        dialog{
+          width: 90vw;
+          margin: auto;
+        }
+      }
     `,
   ];
 
