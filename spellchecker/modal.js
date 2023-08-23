@@ -47,6 +47,32 @@ class TypoModal extends LitElement {
     positionY: { type: Number },
   };
 
+  keyboardShortcut(e, object){
+    
+    e.preventDefault();
+    e.stopPropagation();
+    const selected = isNaN(+e.key) ? e.key : +e.key;
+
+
+    if (this.typo.suggestions[selected - 1]) {
+      this.dispatchEvent(
+        new CustomEvent("replace", {
+          detail: {
+            suggestion: this.typo.suggestions[selected - 1],
+          },
+        })
+      );
+    } else if (selected === "Enter") {
+      this.dispatchEvent(
+        new CustomEvent("move", {
+          detail: {
+            delta: e.shiftKey ? -1 : 1,
+          },
+        })
+      );
+    }
+  }
+
   firstUpdated() {
     super.firstUpdated();
 
@@ -54,29 +80,7 @@ class TypoModal extends LitElement {
       this.dispatchEvent(new CustomEvent("close"))
     );
 
-    document.body.addEventListener("keypress", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const selected = isNaN(+e.key) ? e.key : +e.key;
-
-      if (this.typo.suggestions[selected - 1]) {
-        this.dispatchEvent(
-          new CustomEvent("replace", {
-            detail: {
-              suggestion: this.typo.suggestions[selected - 1],
-            },
-          })
-        );
-      } else if (selected === "Enter") {
-        this.dispatchEvent(
-          new CustomEvent("move", {
-            detail: {
-              delta: e.shiftKey ? -1 : 1,
-            },
-          })
-        );
-      }
-    });
+    document.body.addEventListener("keypress", (e)=>{this.keyboardShortcut(e, this)});
   }
 
   render() {
@@ -138,6 +142,10 @@ class TypoModal extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  close(){
+    document.body.removeEventListener("keypress", this.keyboardShortcut)
   }
 }
 

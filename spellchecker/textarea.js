@@ -103,6 +103,8 @@ class SpellCheckInput extends LitElement {
   closeModal() {
     this.typoIndex = undefined;
     this.typos = [];
+    let typo_modal = this.shadowRoot.querySelector("typo-modal");
+    typo_modal.close()
   }
 
   goIndex(delta = 1) {
