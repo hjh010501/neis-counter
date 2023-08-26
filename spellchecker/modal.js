@@ -47,12 +47,11 @@ class TypoModal extends LitElement {
     positionY: { type: Number },
   };
 
-  keyboardShortcut(e, object){
+  keyboardShortcut = (e)=>{
     
     e.preventDefault();
     e.stopPropagation();
     const selected = isNaN(+e.key) ? e.key : +e.key;
-
 
     if (this.typo.suggestions[selected - 1]) {
       this.dispatchEvent(
@@ -72,15 +71,18 @@ class TypoModal extends LitElement {
       );
     }
   }
+  
+  onClickDocument = (e) => {
+    this.dispatchEvent(new CustomEvent("close"));
+  }
+
 
   firstUpdated() {
     super.firstUpdated();
 
-    document.addEventListener("click", () =>
-      this.dispatchEvent(new CustomEvent("close"))
-    );
+    document.addEventListener("click", this.onClickDocument);
 
-    document.body.addEventListener("keypress", (e)=>{this.keyboardShortcut(e, this)});
+    document.body.addEventListener("keypress", this.keyboardShortcut);
   }
 
   render() {
@@ -145,7 +147,8 @@ class TypoModal extends LitElement {
   }
 
   close(){
-    document.body.removeEventListener("keypress", this.keyboardShortcut)
+    document.body.removeEventListener("keypress", this.keyboardShortcut);
+    document.removeEventListener("click", this.onClickDocument);
   }
 }
 
