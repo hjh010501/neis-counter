@@ -57,7 +57,7 @@
                     </tr>
             </table>
             <div id="result" class="result">공백 제외 0자, 공백 포함 0자, 0바이트</div>
-            <span class="info">영어, 숫자, 특수문자, 띄어쓰기 1바이트 / 엔터키 2바이트 / 한글 3바이트<br>해당 사이트 제작자가 20년도 졸업생인데,<br class="small-screen"> 생활기록부 입력 제한이 바뀐 것으로 알고 있어 지웠습니다.<br>PR 로 내용을 보내주시면 반영하겠습니다!<br>반영해주신 분들: <a href="https://github.com/Dongyeongkim" target="_blank">김동영</a>, <a href="https://github.com/rycont" target="_blank">정한(RyCont)</a>, <a href="https://github.com/cokia" target="_blank">한우영</a>, <a href="https://github.com/hajin-chung" target="_blank">정하진</a>, <a href="https://github.com/bshyuunn" target="_blank">배송현</a>, <a href="https://github.com/mcgun1234" target="_blank">최수현</a>, <a href="https://github.com/b0u0b-0w0" target="_blank">김서진</a>, <a href="https://github.com/jjoonleo" target="_blank">박이준</a>, <a href="https://github.com/chanheecho426" target="_blank">조찬희</a><br><br><a href="https://hjh010501.github.io/neis-counter/"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhjh010501.github.io%2Fneis-counter%2F&count_bg=%23000000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90+%EC%88%98&edge_flat=true"/></a></span>
+            <span class="info">영어, 숫자, 특수문자, 띄어쓰기, 엔터키 1바이트 / 한글 3바이트<br>변경사항이 있다면 개발자 이메일로 연락주시면 감사하겠습니다.<br class="small-screen">반영해주신 분들: <a href="https://github.com/Dongyeongkim" target="_blank">김동영</a>, <a href="https://github.com/rycont" target="_blank">정한(RyCont)</a>, <a href="https://github.com/cokia" target="_blank">한우영</a>, <a href="https://github.com/hajin-chung" target="_blank">정하진</a>, <a href="https://github.com/bshyuunn" target="_blank">배송현</a>, <a href="https://github.com/mcgun1234" target="_blank">최수현</a>, <a href="https://github.com/b0u0b-0w0" target="_blank">김서진</a>, <a href="https://github.com/jjoonleo" target="_blank">박이준</a><br><br><a href="https://hjh010501.github.io/neis-counter/"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhjh010501.github.io%2Fneis-counter%2F&count_bg=%23000000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90+%EC%88%98&edge_flat=true"/></a></span>
         </div>
         <div class="footbar">
         <div class="footbar_content">
@@ -89,6 +89,13 @@
         }
 
         function counter(content) {
+            if (content == "\n" && content.startsWith('\n')) {
+                content = content.slice(1);
+            }
+            if (content != "\n" && content.endsWith('\n')) {
+                content = content.slice(0, -1);
+            }
+
             localStorage.setItem("save", content);
             var english = content.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/‘|’|“|”/g, "");
             var korean = content.replace(/[a-zA-Z]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/‘|’|“|”/g, "");
@@ -97,7 +104,7 @@
             var threebyte_special = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[0-9]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/\s/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"");
             var space =  content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/[0-9]/gi, "").replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/‘|’|“|”/g, "");
             var line = content.replace(/[a-zA-Z]/gi, "").replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi, "").replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi, "").replace(/[0-9]/gi, "").replace(/ /gi, "").replace(/‘|’|“|”/g, "");
-            var result = english.length + (korean.length * 3) +  number.length + onebyte_special.length + (threebyte_special.length * 3) + space.length + (line.length * 2);
+            var result = english.length + (korean.length * 3) +  number.length + onebyte_special.length + (threebyte_special.length * 3) + space.length + line.length;
             document.getElementById('result').innerHTML = "공백 제외 " + content.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/ /gi, "").length + "자, 공백 포함 " + content.length + "자, " + result + "바이트";
         }    
 
