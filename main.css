@@ -86,6 +86,7 @@ body {
   height: 400px;
   outline: 0;
   line-height: 1.7em;
+  padding: 25px;
 }
 
 .result {

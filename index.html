@@ -73,8 +73,8 @@
                 document.getElementById('counter').value = content;
             }
 
-            textarea.addEventListener("content-change", function(e) {
-                counter(e.detail.content);
+            textarea.addEventListener("input", function(e) {
+                counter(e.target.value);
             });
         }
 
