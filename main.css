@@ -61,14 +61,6 @@ body {
   width: 100%;
 }
 
-header {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .title {
   font-family: "Noto Sans KR Bold";
   font-size: 2.6rem;
@@ -94,7 +86,6 @@ header {
   height: 400px;
   outline: 0;
   line-height: 1.7em;
-  box-sizing: border-box;
 }
 
 .result {
@@ -120,19 +111,6 @@ header {
   flex-direction: row;
   justify-content: space-between;
   font-size: 1.6rem;
-}
-
-button {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 0.4rem 1.2rem;
-  border-radius: 20px;
-  font-family: "Noto Sans KR";
-  background-color: #1d1d1d;
-  color: #fff;
-}
-
-button.pending {
-  opacity: 0.5;
 }
 
 table {

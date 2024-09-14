@@ -30,14 +30,11 @@
     </head>
     <body>
         <div class="center">
-            <header>
               <div class="title">🌊나이스(NEIS) 글자수 계산기</div>
-              <button id="spellcheck_button">맞춤법 검사하기</button>
-            </header>
             <div class="title_underbar_wrapper">
             <div class="title_underbar"></div>
             </div>
-            <spell-check-input id="counter" class="counter"></spell-check-input>
+            <textarea id="counter" class="counter" cols="40" rows="5"></textarea>
             <table>
                     <tr>
                         <th>항목</td>
@@ -65,26 +62,19 @@
             <span><a class="github-button" href="https://github.com/hjh010501/neis-counter" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star hjh010501/neis-counter on GitHub">Star</a></span>
         </div>
         </div>
-        <script type="module" src="./spellchecker/index.js"></script>
         <script>
         const textarea = document.getElementById("counter");
-        const spellCheckButton = document.getElementById("spellcheck_button")
         
         function init() {
             let content = localStorage.getItem("save");
 
             if(content) {
                 counter(content);
-                textarea.setContent(content);
+                document.getElementById('counter').value = content;
             }
 
             textarea.addEventListener("content-change", function(e) {
                 counter(e.detail.content);
-            });
-
-            spellCheckButton.addEventListener("click", function() {
-                spellCheckButton.classList.add("pending")
-                textarea.spellCheck().finally(() => spellCheckButton.classList.remove("pending"));
             });
         }
 
