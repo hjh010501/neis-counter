@@ -137,6 +137,42 @@ td {
   padding: 0.5em;
 }
 
+.ad-banner {
+  display: block;
+  width: 50vw;
+  max-width: 400px;
+  margin-top: 3rem;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  background: #1a1a2e;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ad-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.25);
+}
+
+.ad-banner-img {
+  width: 100%;
+  display: block;
+}
+
+.ad-banner-text {
+  padding: 10px 14px;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.ad-banner-cta {
+  font-family: "Noto Sans KR Bold";
+  font-size: 1.3rem;
+  color: #e8d5b7;
+  letter-spacing: -0.5px;
+}
+
 .footbar {
   width: 80vw;
   max-width: 800px;
@@ -168,6 +204,15 @@ td {
 
   .info{
     font-size: 1.3rem;
+  }
+
+  .ad-banner {
+    width: 60vw;
+    max-width: 350px;
+  }
+
+  .ad-banner-cta {
+    font-size: 1.2rem;
   }
 }
 
@@ -212,5 +257,19 @@ td {
 
   .info{
     font-size: 1rem;
+  }
+
+  .ad-banner {
+    width: 70vw;
+    max-width: 300px;
+    border-radius: 6px;
+  }
+
+  .ad-banner-text {
+    padding: 8px 12px;
+  }
+
+  .ad-banner-cta {
+    font-size: 1.1rem;
   }
 }
