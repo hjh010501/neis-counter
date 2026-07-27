@@ -93,80 +93,23 @@
         
             localStorage.setItem("save", content);
         
-            // 수학 기호와 그리스 문자를 정의
-var math_symbols = /[\+\-\*\/=<>∞∑∏∫√∂∆πθΩαβγδεζηλμνξοπρστυφχψω·]/g; // 수학, 그리스 기호 및 '·'
-var other_symbols = /[‘’“”]/g; // 따옴표 등 기타 기호
+            // 바이트 계산 규칙 정의
+var math_symbols = /[∞∑∏∫√∂∆πθΩαβγδεζηλμνξοπρστυφχψω·]/; // 수학, 그리스 기호 및 '·' (1바이트 처리)
+var other_symbols = /[‘’“”]/; // 따옴표 등 기타 기호 (1바이트 처리)
 
-// 각 카테고리 별 필터링
-var english = content
-    .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, "") // 한글 제거
-    .replace(/[0-9]/g, "") // 숫자 제거
-    .replace(math_symbols, "") // 수학 기호 제거
-    .replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g, "") // 특수문자 제거
-    .replace(/\s/g, "") // 공백 제거
-    .replace(other_symbols, ""); // 기타 기호 제거
-
-var korean = content
-    .replace(/[a-zA-Z]/g, "") // 영문 제거
-    .replace(/[0-9]/g, "") // 숫자 제거
-    .replace(math_symbols, "") // 수학 기호 제거
-    .replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g, "") // 특수문자 제거
-    .replace(/\s/g, "") // 공백 제거
-    .replace(other_symbols, ""); // 기타 기호 제거
-
-var number = content
-    .replace(/[a-zA-Z]/g, "") // 영문 제거
-    .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, "") // 한글 제거
-    .replace(math_symbols, "") // 수학 기호 제거
-    .replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g, "") // 특수문자 제거
-    .replace(/\s/g, "") // 공백 제거
-    .replace(other_symbols, ""); // 기타 기호 제거
-
-var onebyte_special = content
-    .replace(/[a-zA-Z]/g, "") // 영문 제거
-    .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, "") // 한글 제거
-    .replace(/[0-9]/g, "") // 숫자 제거
-    // .replace(math_symbols, "") // 수학 기호 제거
-    .replace(/[\n\t\r\s]/g, "") // 공백 및 줄바꿈 제거
-    // .replace(other_symbols, ""); // 기타 기호 제거
-
-var threebyte_special = content
-    .replace(/[a-zA-Z]/g, "") // 영문 제거
-    .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, "") // 한글 제거
-    .replace(/[0-9]/g, "") // 숫자 제거
-    .replace(math_symbols, "") // 수학 기호 제거
-    .replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g, "") // 특수문자 제거
-    .replace(/[\n\t\r\s]/g, "") // 공백 및 줄바꿈 제거
-    .replace(other_symbols, ""); // 기타 기호 제거
-
-var space = content
-    .replace(/[a-zA-Z]/g, "") // 영문 제거
-    .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, "") // 한글 제거
-    .replace(/[0-9]/g, "") // 숫자 제거
-    .replace(math_symbols, "") // 수학 기호 제거
-    .replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g, "") // 특수문자 제거
-    .replace(other_symbols, "") // 기타 기호 제거
-    .replace(/[^\s]/g, "") // 공백 이외의 문자 제거
-    .replace(/[\n\r]/g, ""); // 줄바꿈 문자 제거
-
-var line = content
-    .replace(/[a-zA-Z]/g, "") // 영문 제거
-    .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, "") // 한글 제거
-    .replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g, "") // 특수문자 제거
-    .replace(/[0-9]/g, "") // 숫자 제거
-    .replace(math_symbols, "") // 수학 기호 제거
-    .replace(/[^\n]/g, "") // 줄바꿈 이외 문자 제거
-    .replace(other_symbols, ""); // 기타 기호 제거
-
-
-// 최종 계산
-var result = english.length + 
-             (korean.length * 3) + 
-             number.length + 
-             onebyte_special.length + 
-             (threebyte_special.length * 3) + 
-             space.length + 
-             (line.length * 2);
+// 각 문자를 정확히 한 번씩만 계산 (열거되지 않은 문자가 여러 카테고리에 중복 계산되던 버그 수정)
+// 엔터키(2바이트)와 수학·그리스 기호·따옴표(1바이트 정책)를 제외하면, 나머지는 실제 UTF-8 바이트 수로 계산 → 타 사이트/NEIS와 동일
+var result = 0;
+for (const ch of content) {
+    if (ch === '\n') {
+        result += 2;                                     // 엔터키
+    } else if (math_symbols.test(ch) || other_symbols.test(ch)) {
+        result += 1;                                     // 수학·그리스 기호, 따옴표 (기존 1바이트 정책 유지)
+    } else {
+        var cp = ch.codePointAt(0);                      // 그 외: 실제 UTF-8 바이트 수
+        result += cp <= 0x7F ? 1 : cp <= 0x7FF ? 2 : cp <= 0xFFFF ? 3 : 4; // 영문·숫자·특수문자 1, 한글·CJK 3, 이모지 4
+    }
+}
 
             document.getElementById('result').innerHTML = "공백 제외 " + content.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/ /gi, "").length + "자, 공백 포함 " + content.length + "자, " + result + "바이트";
         }    
