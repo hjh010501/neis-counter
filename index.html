@@ -69,7 +69,8 @@
         </div>
         <script>
         const textarea = document.getElementById("counter");
-        
+        let isComposing = false; // 한글 등 IME 조합 중인지 여부
+
         function init() {
             let content = localStorage.getItem("save");
 
@@ -78,9 +79,34 @@
                 document.getElementById('counter').value = content;
             }
 
+            // IME(한글) 조합 상태 추적
+            textarea.addEventListener("compositionstart", function() {
+                isComposing = true;
+            });
+            textarea.addEventListener("compositionend", function() {
+                isComposing = false;
+            });
+
             textarea.addEventListener("input", function(e) {
+                // 탭/창이 숨겨진 상태에서 들어오는 input은 사용자의 실제 입력이 아니라
+                // IME 조합이 취소되며 발생하는 잔여 이벤트다. 마지막 글자가 지워지지
+                // 않도록 이런 이벤트로는 저장 값을 덮어쓰지 않는다.
+                if (document.hidden) return;
                 counter(e.target.value);
             });
+
+            // 페이지/탭/창을 벗어날 때: 조합 중이던 글자가 확정되지 않고 취소되어
+            // 마지막 글자가 사라지는 문제를 막는다. 아직 포커스가 남아 있으면 blur로
+            // 조합 중인 글자를 강제로 확정(commit)시키고 현재 값을 그대로 저장한다.
+            // (입력창 밖을 클릭했을 때 정상 동작하던 것과 동일한 흐름)
+            function flush() {
+                if (isComposing) textarea.blur();
+                counter(textarea.value);
+            }
+            document.addEventListener("visibilitychange", function() {
+                if (document.hidden) flush();
+            });
+            window.addEventListener("pagehide", flush);
         }
 
         function counter(content) {
